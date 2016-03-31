@@ -58,24 +58,49 @@
                                     <action selector="downloadAction:" destination="WPK-zH-KZf" eventType="touchUpInside" id="XCe-lx-PUU"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mht-2Z-IT4">
+                                <rect key="frame" x="20" y="431" width="280" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="2Me-Zm-Fma"/>
+                                </constraints>
+                            </progressView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IFH-oQ-psb">
+                                <rect key="frame" x="93" y="456" width="134" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="27" id="46n-a0-Cx5"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.27058823529999998" green="0.6705882353" blue="0.94901960780000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="mht-2Z-IT4" firstAttribute="leading" secondItem="OJV-z6-eeJ" secondAttribute="leading" constant="20" id="6aK-a3-PD7"/>
+                            <constraint firstAttribute="trailing" secondItem="mht-2Z-IT4" secondAttribute="trailing" constant="20" id="82G-fP-SDu"/>
                             <constraint firstItem="VG5-NY-Do0" firstAttribute="leading" secondItem="OJV-z6-eeJ" secondAttribute="leading" constant="129" id="AFb-0s-j3s"/>
                             <constraint firstAttribute="trailing" secondItem="VG5-NY-Do0" secondAttribute="trailing" constant="141" id="CgT-wC-3zs"/>
                             <constraint firstItem="wvD-25-nLC" firstAttribute="leading" secondItem="OJV-z6-eeJ" secondAttribute="leading" constant="104" id="FnV-08-Mtn"/>
                             <constraint firstItem="VG5-NY-Do0" firstAttribute="top" secondItem="emH-tV-Gxi" secondAttribute="bottom" constant="49" id="ITP-Sn-iOG"/>
                             <constraint firstItem="2oT-dI-T1v" firstAttribute="top" secondItem="VG5-NY-Do0" secondAttribute="bottom" constant="43" id="KsE-Ga-KKo"/>
                             <constraint firstItem="2oT-dI-T1v" firstAttribute="leading" secondItem="OJV-z6-eeJ" secondAttribute="leading" constant="120" id="Lqj-9i-Rbd"/>
+                            <constraint firstAttribute="trailing" secondItem="IFH-oQ-psb" secondAttribute="trailing" constant="93" id="O5g-zJ-OEt"/>
+                            <constraint firstItem="mht-2Z-IT4" firstAttribute="top" secondItem="wvD-25-nLC" secondAttribute="bottom" constant="80" id="SN3-Ag-BHC"/>
+                            <constraint firstItem="IFH-oQ-psb" firstAttribute="top" secondItem="mht-2Z-IT4" secondAttribute="bottom" constant="23" id="VHZ-wE-GXz"/>
                             <constraint firstAttribute="trailing" secondItem="emH-tV-Gxi" secondAttribute="trailing" constant="137" id="XkQ-P6-FnA"/>
                             <constraint firstAttribute="trailing" secondItem="2oT-dI-T1v" secondAttribute="trailing" constant="132" id="jTd-8U-H7i"/>
                             <constraint firstItem="wvD-25-nLC" firstAttribute="top" secondItem="2oT-dI-T1v" secondAttribute="bottom" constant="45" id="lEe-9d-hZ2"/>
                             <constraint firstAttribute="trailing" secondItem="wvD-25-nLC" secondAttribute="trailing" constant="118" id="m52-HK-vuG"/>
                             <constraint firstItem="emH-tV-Gxi" firstAttribute="leading" secondItem="OJV-z6-eeJ" secondAttribute="leading" constant="124" id="nmX-C3-MxK"/>
                             <constraint firstItem="emH-tV-Gxi" firstAttribute="top" secondItem="ovS-Tc-afn" secondAttribute="bottom" constant="30" id="rRE-OC-NzD"/>
+                            <constraint firstItem="IFH-oQ-psb" firstAttribute="leading" secondItem="OJV-z6-eeJ" secondAttribute="leading" constant="93" id="vnn-Tn-dXy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="网络请求" id="CCK-9v-hyJ"/>
+                    <connections>
+                        <outlet property="progressView" destination="mht-2Z-IT4" id="igH-tq-At0"/>
+                        <outlet property="progresslabel" destination="IFH-oQ-psb" id="4H2-9i-PAd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AGM-wU-M3t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -120,7 +145,6 @@
         <!--Navigation Controller-->
         <scene sceneID="LWj-MS-9ma">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NOB-zc-eND" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="qAm-LF-a09" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TSc-gt-2ps">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -134,6 +158,7 @@
                         <segue destination="WPK-zH-KZf" kind="relationship" relationship="rootViewController" id="OO7-XY-rkP"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NOB-zc-eND" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-268" y="102"/>
         </scene>

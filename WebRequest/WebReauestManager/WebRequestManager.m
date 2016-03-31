@@ -100,7 +100,8 @@ singletonImplemention(WebRequestManager)
                             data:(NSData *)data 
                   fileSuffixName:(NSString *)fileSuffixName
                          success:(void(^)(id dic))success 
-                         failure:(void(^)(NSError *error))failure {
+                         failure:(void(^)(NSError *error))failure
+               fractionCompleted:(void(^)(double count))fractionCompleted {
     
     WebRequestSession *requestSession = [[WebRequestSession alloc]init];
 
@@ -123,16 +124,23 @@ singletonImplemention(WebRequestManager)
         
         if (failure) {
             
-            failure(error);
+            [self BlockWith:error success:success failure:failure];
         }
         
+    }fractionCompleted:^(double count) {
+        
+        if (fractionCompleted) {
+            
+            fractionCompleted(count);
+        }
     }];
     
 }
 
 - (void) downloadFileWithURLString:(NSString *)URLString 
                            success:(void(^)(id dic))success 
-                           failure:(void(^)(NSError *error))failure {
+                           failure:(void(^)(NSError *error))failure
+                 fractionCompleted:(void(^)(double count))fractionCompleted {
 
     URLString = [self beforeRequestWithSettingWithURLString:URLString];
     
@@ -142,7 +150,11 @@ singletonImplemention(WebRequestManager)
     
     [self.operationCachePool setObject:requestSession forKey:URLString];
     
-    [requestSession downloadFileWithURLString:URLString success:^(id dic) {
+    NSString *hash = [self.webTask md5String];
+    
+    NSString *filePath = [self pathForDocumentWithComponent:hash];
+    
+    [requestSession downloadFileWithURLString:URLString fileDownPath:filePath success:^(id dic) {
         
         if (success) {
             
@@ -155,6 +167,12 @@ singletonImplemention(WebRequestManager)
         if (failure) {
             
             failure(error);
+        }
+    } fractionCompleted:^(double count) {
+        
+        if (fractionCompleted) {
+            
+            fractionCompleted(count);
         }
     }];
 

@@ -106,11 +106,12 @@
 
 - (void) uploadFileWithURLString:(NSString *)URLString 
                       WithParams:(id)params
-                           data:(NSData *)data 
+                            data:(NSData *)data 
                             name:(NSString *)name 
                         fileName:(NSString *)fileName 
                          success:(void(^)(id dic))success 
-                         failure:(void(^)(NSError *error))failure {
+                         failure:(void(^)(NSError *error))failure
+               fractionCompleted:(void(^)(double count))fractionCompleted {
     
     [self.requestManager POST:URLString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
@@ -118,7 +119,10 @@
         
     } progress:^(NSProgress * _Nonnull uploadProgress) {
         
-        [SVProgressHUD showProgress:uploadProgress.fractionCompleted status:[NSString stringWithFormat:@"%.1f%%",uploadProgress.fractionCompleted * 100]];
+        if (fractionCompleted) {
+            
+            fractionCompleted(uploadProgress.fractionCompleted);
+        }
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         
         if (success) {
@@ -133,20 +137,24 @@
 }
 
 - (void) downloadFileWithURLString:(NSString *)URLString 
+                      fileDownPath:(NSString *)fileDownPath 
                            success:(void(^)(id dic))success 
-                           failure:(void(^)(NSError *error))failure  {
+                           failure:(void(^)(NSError *error))failure
+                 fractionCompleted:(void(^)(double count))fractionCompleted  {
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
     NSURLSessionDownloadTask *downloadTask =  [self.requestManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
         
-        [SVProgressHUD showProgress:downloadProgress.fractionCompleted status:[NSString stringWithFormat:@"%.1f%%",downloadProgress.fractionCompleted * 100]];
+        if (fractionCompleted) {
+            
+            fractionCompleted(downloadProgress.fractionCompleted);
+        }
+        
     } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
         
-        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-
-        documentsDirectoryURL = [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
-
+        NSURL *documentsDirectoryURL = [NSURL fileURLWithPath:fileDownPath];
+        
         NSLog(@"%@",documentsDirectoryURL);
         
         return documentsDirectoryURL;
@@ -162,6 +170,7 @@
         }else {
         
             if (failure) {
+                
                 failure(error);
             }
         }

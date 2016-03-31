@@ -74,12 +74,14 @@ singletonInterface(WebRequestManager)
                             data:(NSData *)data 
                   fileSuffixName:(NSString *)fileSuffixName
                          success:(void(^)(id dic))success 
-                         failure:(void(^)(NSError *error))failure;
+                         failure:(void(^)(NSError *error))failure
+               fractionCompleted:(void(^)(double count))fractionCompleted;
 
 
 - (void) downloadFileWithURLString:(NSString *)URLString 
                            success:(void(^)(id dic))success 
-                           failure:(void(^)(NSError *error))failure;
+                           failure:(void(^)(NSError *error))failure
+                 fractionCompleted:(void(^)(double count))fractionCompleted;
 /**
  *  取消请求
  */

@@ -60,12 +60,15 @@
                             name:(NSString *)name 
                         fileName:(NSString *)fileName 
                          success:(void(^)(id dic))success 
-                         failure:(void(^)(NSError *error))failure;
+                         failure:(void(^)(NSError *error))failure
+               fractionCompleted:(void(^)(double count))fractionCompleted;
 
 
 - (void) downloadFileWithURLString:(NSString *)URLString 
+                      fileDownPath:(NSString *)fileDownPath 
                            success:(void(^)(id dic))success 
-                           failure:(void(^)(NSError *error))failure;
+                           failure:(void(^)(NSError *error))failure
+                 fractionCompleted:(void(^)(double count))fractionCompleted;
 /**
  *  取消请求
  */

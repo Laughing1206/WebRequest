@@ -73,15 +73,45 @@ data = UIImageJPEGRepresentation(image, 0.8);
 } failure:^(NSError *error) {
 
 [self returnFailureWith:error];
+}fractionCompleted:^(double count) {
+
+dispatch_async(dispatch_get_main_queue(), ^{
+
+self.progressView.progress = count;
+
+self.progresslabel.text = [NSString stringWithFormat:@"%.2f%%",count * 100];
+
+});
 }];
 
 
 #Download:
 
-正在完善中
+[SVProgressHUD showWithStatus:@"请求数据中"];
 
+NSString *URL = [NSString stringWithFormat:@"http://help.adobe.com/archive/en/photoshop/cs6/photoshop_reference.pdf"];
 
+[WebRequestManager sharedWebRequestManager].requestSerializerType = RequestSerializerTypeForm;
 
+[WebRequestManager sharedWebRequestManager].responseSerializerType = ResponseSerializerTypeHTTP;
+
+[[WebRequestManager sharedWebRequestManager] downloadFileWithURLString:URL success:^(id dic) {
+
+[self pushVCWithDic:dic];
+} failure:^(NSError *error) {
+
+[self returnFailureWith:error];
+
+}fractionCompleted:^(double count) {
+
+dispatch_async(dispatch_get_main_queue(), ^{
+
+self.progressView.progress = count;
+
+self.progresslabel.text = [NSString stringWithFormat:@"%.2f%%",count * 100];
+});
+
+}];
 
 #pragma mark - 公共方法
 - (void) pushVCWithDic:(id)dic {

@@ -11,6 +11,10 @@
 #import "ViewController.h"
 @interface ClickViewController ()
 
+@property (weak, nonatomic) IBOutlet UIProgressView *progressView;
+
+@property (weak, nonatomic) IBOutlet UILabel *progresslabel;
+
 @end
 
 @implementation ClickViewController
@@ -20,7 +24,17 @@
 
     
 }
-- (IBAction)getAction:(UIButton *)sender {
+
+- (void) viewWillAppear:(BOOL)animated {
+
+    [super viewWillAppear:animated];
+    
+    self.progressView.progress = 0;
+    
+    self.progresslabel.text = @"0";
+}
+
+- (IBAction) getAction:(UIButton *)sender {
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
     NSString *URL = [NSString stringWithFormat:@"http://api.douban.com/v2/music/search"];
@@ -39,7 +53,7 @@
     }];
 }
 
-- (IBAction)postAction:(UIButton *)sender {
+- (IBAction) postAction:(UIButton *)sender {
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
     
@@ -59,7 +73,7 @@
     }];
 }
 
-- (IBAction)uploadAction:(UIButton *)sender {
+- (IBAction) uploadAction:(UIButton *)sender {
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
     
@@ -89,10 +103,19 @@
     } failure:^(NSError *error) {
         
         [self returnFailureWith:error];
+    }fractionCompleted:^(double count) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.progressView.progress = count;
+            
+            self.progresslabel.text = [NSString stringWithFormat:@"%.2f%%",count * 100];
+            
+        });
     }];
 }
 
-- (IBAction)downloadAction:(UIButton *)sender {
+- (IBAction) downloadAction:(UIButton *)sender {
     
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
@@ -109,6 +132,15 @@
     } failure:^(NSError *error) {
         
         [self returnFailureWith:error];
+        
+    }fractionCompleted:^(double count) {
+       
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            self.progressView.progress = count;
+            
+            self.progresslabel.text = [NSString stringWithFormat:@"%.2f%%",count * 100];
+        });
         
     }];
 }
