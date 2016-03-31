@@ -53,6 +53,7 @@
  *  @param fileName  图片文件名
  *  @param success   成功回调block
  *  @param failure   失败回调block
+ *  @param fractionCompleted 进度
  */
 - (void) uploadFileWithURLString:(NSString *)URLString 
                       WithParams:(id)params
@@ -63,7 +64,15 @@
                          failure:(void(^)(NSError *error))failure
                fractionCompleted:(void(^)(double count))fractionCompleted;
 
-
+/**
+ *  下载文件
+ *
+ *  @param URLString         数据接口
+ *  @param fileDownPath      要保存的地址
+ *  @param success           成功回调block
+ *  @param failure           失败回调block
+ *  @param fractionCompleted 进度
+ */
 - (void) downloadFileWithURLString:(NSString *)URLString 
                       fileDownPath:(NSString *)fileDownPath 
                            success:(void(^)(id dic))success 

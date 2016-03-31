@@ -77,7 +77,14 @@ singletonInterface(WebRequestManager)
                          failure:(void(^)(NSError *error))failure
                fractionCompleted:(void(^)(double count))fractionCompleted;
 
-
+/**
+ *  下载文件
+ *
+ *  @param URLString         数据接口
+ *  @param success           成功回调block
+ *  @param failure           失败回调block
+ *  @param fractionCompleted 进度
+ */
 - (void) downloadFileWithURLString:(NSString *)URLString 
                            success:(void(^)(id dic))success 
                            failure:(void(^)(NSError *error))failure
