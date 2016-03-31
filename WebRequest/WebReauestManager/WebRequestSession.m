@@ -132,6 +132,44 @@
     }];
 }
 
+- (void) downloadFileWithURLString:(NSString *)URLString 
+                           success:(void(^)(id dic))success 
+                           failure:(void(^)(NSError *error))failure  {
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
+    
+    NSURLSessionDownloadTask *downloadTask =  [self.requestManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+        [SVProgressHUD showProgress:downloadProgress.fractionCompleted status:[NSString stringWithFormat:@"%.1f%%",downloadProgress.fractionCompleted * 100]];
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+
+        documentsDirectoryURL = [documentsDirectoryURL URLByAppendingPathComponent:[response suggestedFilename]];
+
+        NSLog(@"%@",documentsDirectoryURL);
+        
+        return documentsDirectoryURL;
+
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+        if (!error) {
+            
+            if (success) {
+                
+                success(filePath);
+            }
+        }else {
+        
+            if (failure) {
+                failure(error);
+            }
+        }
+        
+    }];
+    [downloadTask resume];
+}
+
 - (void)cancelRequest {
     
     [self.requestManager.operationQueue cancelAllOperations];

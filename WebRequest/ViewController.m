@@ -29,7 +29,10 @@
         
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
         dic = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    }else {
+    }else if ([dic isKindOfClass:[NSURL class]]) {
+    
+        dic = [NSString stringWithFormat:@"%@",dic];
+    }else{
     
         dic = [[NSString alloc] initWithData:dic encoding:NSUTF8StringEncoding];
     }

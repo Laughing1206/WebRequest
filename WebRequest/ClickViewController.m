@@ -94,6 +94,23 @@
 
 - (IBAction)downloadAction:(UIButton *)sender {
     
+    
+    [SVProgressHUD showWithStatus:@"请求数据中"];
+    
+    NSString *URL = [NSString stringWithFormat:@"http://help.adobe.com/archive/en/photoshop/cs6/photoshop_reference.pdf"];
+    
+    [WebRequestManager sharedWebRequestManager].requestSerializerType = RequestSerializerTypeForm;
+    
+    [WebRequestManager sharedWebRequestManager].responseSerializerType = ResponseSerializerTypeHTTP;
+    
+    [[WebRequestManager sharedWebRequestManager] downloadFileWithURLString:URL success:^(id dic) {
+        
+        [self pushVCWithDic:dic];
+    } failure:^(NSError *error) {
+        
+        [self returnFailureWith:error];
+        
+    }];
 }
 
 - (void) pushVCWithDic:(id)dic {

@@ -130,6 +130,35 @@ singletonImplemention(WebRequestManager)
     
 }
 
+- (void) downloadFileWithURLString:(NSString *)URLString 
+                           success:(void(^)(id dic))success 
+                           failure:(void(^)(NSError *error))failure {
+
+    URLString = [self beforeRequestWithSettingWithURLString:URLString];
+    
+    WebRequestSession *requestSession = [[WebRequestSession alloc]init];
+    
+    self.webRequestSession = requestSession;
+    
+    [self.operationCachePool setObject:requestSession forKey:URLString];
+    
+    [requestSession downloadFileWithURLString:URLString success:^(id dic) {
+        
+        if (success) {
+            
+            success(dic);
+        };
+    } failure:^(NSError *error) {
+        
+        self.isCanceled = NO;
+        
+        if (failure) {
+            
+            failure(error);
+        }
+    }];
+
+}
 // 请求前设置
 - (NSString *) beforeRequestWithSettingWithURLString:(NSString *)URLString {
     

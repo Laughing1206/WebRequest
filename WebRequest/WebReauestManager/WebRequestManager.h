@@ -76,6 +76,10 @@ singletonInterface(WebRequestManager)
                          success:(void(^)(id dic))success 
                          failure:(void(^)(NSError *error))failure;
 
+
+- (void) downloadFileWithURLString:(NSString *)URLString 
+                           success:(void(^)(id dic))success 
+                           failure:(void(^)(NSError *error))failure;
 /**
  *  取消请求
  */
