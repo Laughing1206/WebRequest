@@ -8,6 +8,7 @@
 
 #import "WebResponseLogger.h"
 #import "AFURLSessionManager.h"
+#import "ServiceAll.h"
 #import <objc/runtime.h>
 
 static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notification)
@@ -58,6 +59,7 @@ static NSError * AFNetworkErrorFromNotification(NSNotification *notification)
     
     self.level = AFLoggerLevelInfo;
     
+    [[ServiceAll sharedServiceAll]loadServiceAll];
     return self;
 }
 

@@ -16,14 +16,16 @@
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.textView.text = [self dictionaryToData:self.dic];
     NSLog(@"%@",self.dic);
 }
 
-- (NSString*) dictionaryToData:(id)dic {
+- (NSString*) dictionaryToData:(id)dic
+{
 
     if ([dic isKindOfClass:[NSDictionary class]]) {
         

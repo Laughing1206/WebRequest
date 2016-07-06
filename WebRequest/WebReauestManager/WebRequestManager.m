@@ -31,7 +31,8 @@
 singletonImplemention(WebRequestManager)
 
 // 初始化操作缓存池
-- (NSMutableDictionary *)operationCachePool {
+- (NSMutableDictionary *)operationCachePool
+{
     
     if (_operationCachePool == nil) {
         
@@ -46,7 +47,8 @@ singletonImplemention(WebRequestManager)
 - (void) getDataWithURLString:(NSString *)URLString 
                    WithParams:(id)params 
                       success:(void(^)(id dic))success 
-                      failure:(void(^)(NSError *error))failure {
+                      failure:(void(^)(NSError *error))failure
+{
     
     
     URLString = [self beforeRequestWithSettingWithURLString:URLString];
@@ -72,7 +74,8 @@ singletonImplemention(WebRequestManager)
 - (void) postDataWithURLString:(NSString *)URLString 
                     WithParams:(id)params 
                        success:(void(^)(id dic))success 
-                       failure:(void(^)(NSError *error))failure {
+                       failure:(void(^)(NSError *error))failure
+{
     
     URLString = [self beforeRequestWithSettingWithURLString:URLString];
     
@@ -101,7 +104,8 @@ singletonImplemention(WebRequestManager)
                   fileSuffixName:(NSString *)fileSuffixName
                          success:(void(^)(id dic))success 
                          failure:(void(^)(NSError *error))failure
-               fractionCompleted:(void(^)(double count))fractionCompleted {
+               fractionCompleted:(void(^)(double count))fractionCompleted
+{
     
     WebRequestSession *requestSession = [[WebRequestSession alloc]init];
 
@@ -140,7 +144,8 @@ singletonImplemention(WebRequestManager)
 - (void) downloadFileWithURLString:(NSString *)URLString 
                            success:(void(^)(id dic))success 
                            failure:(void(^)(NSError *error))failure
-                 fractionCompleted:(void(^)(double count))fractionCompleted {
+                 fractionCompleted:(void(^)(double count))fractionCompleted
+{
 
     URLString = [self beforeRequestWithSettingWithURLString:URLString];
     
@@ -178,7 +183,8 @@ singletonImplemention(WebRequestManager)
 
 }
 // 请求前设置
-- (NSString *) beforeRequestWithSettingWithURLString:(NSString *)URLString {
+- (NSString *) beforeRequestWithSettingWithURLString:(NSString *)URLString
+{
     
     URLString = [NSString stringWithFormat:@"%@%@",kWebBaseURLPath,URLString];
     
@@ -194,7 +200,8 @@ singletonImplemention(WebRequestManager)
 }
 
 // 请求数据成功
-- (void) setReturnSuccessWithSuccess:(void(^)(id dic))success URLString:(NSString *)URLString returnData:(id)dic {
+- (void) setReturnSuccessWithSuccess:(void(^)(id dic))success URLString:(NSString *)URLString returnData:(id)dic
+{
     
     if ([self.operationCachePool objectForKey:self.webTask]) {
         
@@ -220,7 +227,8 @@ singletonImplemention(WebRequestManager)
 }
 
 // 请求数据失败
-- (void)BlockWith:(NSError*)error success:(void(^)(id dic))success failure:(void(^)(NSError *error))failure {
+- (void)BlockWith:(NSError*)error success:(void(^)(id dic))success failure:(void(^)(NSError *error))failure
+{
     
     if (self.isCanceled) {
         
@@ -270,7 +278,8 @@ singletonImplemention(WebRequestManager)
 }
 
 // 获取沙盒路径
-- (NSString *)pathForDocumentWithComponent:(NSString *)fid {
+- (NSString *)pathForDocumentWithComponent:(NSString *)fid
+{
     
     NSString *fullPath = nil;
     
@@ -314,7 +323,8 @@ singletonImplemention(WebRequestManager)
 }
 
 //取消请求
-- (void)cancelRequest {
+- (void)cancelRequest
+{
     
     if (self.operationCachePool.count) {
         
@@ -328,7 +338,8 @@ singletonImplemention(WebRequestManager)
 }
 
 // 获取当前时间
-- (NSString*)getDate {
+- (NSString*)getDate
+{
     
     NSDate* now = [NSDate date];
     

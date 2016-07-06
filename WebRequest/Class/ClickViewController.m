@@ -19,13 +19,15 @@
 
 @implementation ClickViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     
 }
 
-- (void) viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated
+{
 
     [super viewWillAppear:animated];
     
@@ -34,7 +36,8 @@
     self.progresslabel.text = @"0";
 }
 
-- (IBAction) getAction:(UIButton *)sender {
+- (IBAction) getAction:(UIButton *)sender
+{
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
     NSString *URL = [NSString stringWithFormat:@"http://api.douban.com/v2/music/search"];
@@ -53,7 +56,8 @@
     }];
 }
 
-- (IBAction) postAction:(UIButton *)sender {
+- (IBAction) postAction:(UIButton *)sender
+{
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
     
@@ -73,7 +77,8 @@
     }];
 }
 
-- (IBAction) uploadAction:(UIButton *)sender {
+- (IBAction) uploadAction:(UIButton *)sender
+{
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
     
@@ -115,7 +120,8 @@
     }];
 }
 
-- (IBAction) downloadAction:(UIButton *)sender {
+- (IBAction) downloadAction:(UIButton *)sender
+{
     
     
     [SVProgressHUD showWithStatus:@"请求数据中"];
@@ -145,7 +151,8 @@
     }];
 }
 
-- (void) pushVCWithDic:(id)dic {
+- (void) pushVCWithDic:(id)dic
+{
 
     [SVProgressHUD dismiss];
     
@@ -158,7 +165,8 @@
     [self.navigationController pushViewController:VC  animated:YES];
 }
 
-- (void) returnFailureWith:(NSError *)error {
+- (void) returnFailureWith:(NSError *)error
+{
     
     NSLog(@"%@",error); 
     

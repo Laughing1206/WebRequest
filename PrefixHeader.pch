@@ -10,7 +10,7 @@
 #define PrefixHeader_pch
 
 #import "SVProgressHUD.h"
-
+#import "singleton.h"
 #ifndef __OPTIMIZE__
 #define NSLog(...) NSLog(__VA_ARGS__)
 #else

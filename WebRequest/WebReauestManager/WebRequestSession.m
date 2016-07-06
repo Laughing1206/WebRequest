@@ -12,7 +12,8 @@
 
 @implementation WebRequestSession
 
-- (AFHTTPSessionManager *)requestManager {
+- (AFHTTPSessionManager *)requestManager
+{
     
     if (_requestManager == nil) {
         
@@ -65,7 +66,8 @@
 - (void) getDataWithURLString:(NSString *)URLString 
                    WithParams:(id)params 
                       success:(void(^)(id dic))success 
-                      failure:(void(^)(NSError *error))failure {
+                      failure:(void(^)(NSError *error))failure
+{
     
     [self.requestManager GET:URLString parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         
@@ -86,7 +88,8 @@
 - (void) postDataWithURLString:(NSString *)URLString 
                     WithParams:(id)params 
                        success:(void(^)(id dic))success 
-                       failure:(void(^)(NSError *error))failure {
+                       failure:(void(^)(NSError *error))failure
+{
     
     [self.requestManager POST:URLString parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -111,7 +114,8 @@
                         fileName:(NSString *)fileName 
                          success:(void(^)(id dic))success 
                          failure:(void(^)(NSError *error))failure
-               fractionCompleted:(void(^)(double count))fractionCompleted {
+               fractionCompleted:(void(^)(double count))fractionCompleted
+{
     
     [self.requestManager POST:URLString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         
@@ -140,7 +144,8 @@
                       fileDownPath:(NSString *)fileDownPath 
                            success:(void(^)(id dic))success 
                            failure:(void(^)(NSError *error))failure
-                 fractionCompleted:(void(^)(double count))fractionCompleted  {
+                 fractionCompleted:(void(^)(double count))fractionCompleted
+{
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URLString]];
     
@@ -179,7 +184,8 @@
     [downloadTask resume];
 }
 
-- (void)cancelRequest {
+- (void)cancelRequest
+{
     
     [self.requestManager.operationQueue cancelAllOperations];
 }

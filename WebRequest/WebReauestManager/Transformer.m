@@ -13,7 +13,6 @@
 
 @end
 
-
 @implementation Transformer
 
 singletonImplemention(Transformer)
@@ -82,4 +81,5 @@ singletonImplemention(Transformer)
         return result;
     }
 }
+
 @end
