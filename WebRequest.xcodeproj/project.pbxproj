@@ -40,6 +40,7 @@
 		6DD0717C1CAD09CD00E6DAB2 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DD071761CAD09CD00E6DAB2 /* SVProgressHUD.bundle */; };
 		6DD0717D1CAD09CD00E6DAB2 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD071781CAD09CD00E6DAB2 /* SVProgressHUD.m */; };
 		6DD0717E1CAD09CD00E6DAB2 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD0717A1CAD09CD00E6DAB2 /* SVRadialGradientLayer.m */; };
+		C6071A8F1D2D16320029F0DA /* WebResponseLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = C6071A8E1D2D16320029F0DA /* WebResponseLogger.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +131,8 @@
 		6DD071781CAD09CD00E6DAB2 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		6DD071791CAD09CD00E6DAB2 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		6DD0717A1CAD09CD00E6DAB2 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		C6071A8D1D2D16320029F0DA /* WebResponseLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebResponseLogger.h; sourceTree = "<group>"; };
+		C6071A8E1D2D16320029F0DA /* WebResponseLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebResponseLogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -286,6 +289,8 @@
 				6DD0716D1CACC9E600E6DAB2 /* WebRequestManager.m */,
 				6DD0716F1CACCA9500E6DAB2 /* WebRequestSession.h */,
 				6DD071701CACCA9500E6DAB2 /* WebRequestSession.m */,
+				C6071A8D1D2D16320029F0DA /* WebResponseLogger.h */,
+				C6071A8E1D2D16320029F0DA /* WebResponseLogger.m */,
 			);
 			path = WebReauestManager;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				6DD0717D1CAD09CD00E6DAB2 /* SVProgressHUD.m in Sources */,
 				6DC3A4921CAA117E003E3E18 /* AppDelegate.m in Sources */,
 				6DC3A4E41CAA1347003E3E18 /* AFNetworkReachabilityManager.m in Sources */,
+				C6071A8F1D2D16320029F0DA /* WebResponseLogger.m in Sources */,
 				6DC3A4F01CAA1347003E3E18 /* UIRefreshControl+AFNetworking.m in Sources */,
 				6DC3A48F1CAA117E003E3E18 /* main.m in Sources */,
 				6DC3A4E91CAA1347003E3E18 /* AFAutoPurgingImageCache.m in Sources */,
