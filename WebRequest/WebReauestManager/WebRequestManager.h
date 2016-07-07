@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "singleton.h"
 
 typedef NS_ENUM(NSInteger, RequestSerializerType) {
 

@@ -8,7 +8,6 @@
 
 #import "WebResponseLogger.h"
 #import "AFURLSessionManager.h"
-#import "ServiceAll.h"
 #import <objc/runtime.h>
 
 static NSURLRequest * AFNetworkRequestFromNotification(NSNotification *notification)
@@ -37,18 +36,7 @@ static NSError * AFNetworkErrorFromNotification(NSNotification *notification)
 }
 
 @implementation WebResponseLogger
-
-+ (instancetype)sharedLogger
-{
-    static WebResponseLogger *_sharedLogger = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        _sharedLogger = [[self alloc] init];
-    });
-    
-    return _sharedLogger;
-}
+singletonImplemention(WebResponseLogger)
 
 - (id)init
 {
@@ -58,8 +46,7 @@ static NSError * AFNetworkErrorFromNotification(NSNotification *notification)
     }
     
     self.level = AFLoggerLevelInfo;
-    
-    [[ServiceAll sharedServiceAll]loadServiceAll];
+
     return self;
 }
 

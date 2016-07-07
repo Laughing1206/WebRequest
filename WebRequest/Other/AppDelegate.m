@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "WebResponseLogger.h"
 @interface AppDelegate ()
 
 @end
@@ -17,11 +16,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    WebResponseLogger *logger = [WebResponseLogger sharedLogger];
-    [logger setLevel:AFLoggerLevelDebug];
-    [logger startLogging];
-
     // 初始化提示框样式
     [SVProgressHUD setDefaultStyle:SVProgressHUDStyleCustom];
     [SVProgressHUD setBackgroundColor:[UIColor blackColor]];

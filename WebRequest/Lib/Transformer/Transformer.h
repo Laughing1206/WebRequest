@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "singleton.h"
 @interface Transformer : NSObject
 singletonInterface(Transformer)
 

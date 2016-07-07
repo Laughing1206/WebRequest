@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(NSUInteger, HTTPRequestLoggerLevel) {
+typedef NS_ENUM(NSUInteger, AFHTTPRequestLoggerLevel) {
     AFLoggerLevelOff,
     AFLoggerLevelDebug,
     AFLoggerLevelInfo,
@@ -19,11 +19,11 @@ typedef NS_ENUM(NSUInteger, HTTPRequestLoggerLevel) {
 
 @interface WebResponseLogger : NSObject
 
-@property (nonatomic, assign) HTTPRequestLoggerLevel level;
+singletonInterface(WebResponseLogger)
+
+@property (nonatomic, assign) AFHTTPRequestLoggerLevel level;
 
 @property (nonatomic, strong) NSPredicate *filterPredicate;
-
-+ (instancetype)sharedLogger;
 
 - (void)startLogging;
 
